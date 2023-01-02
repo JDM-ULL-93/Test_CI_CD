@@ -6,9 +6,7 @@ En este tutorial se listaran los pasos para desplegar un entorno con CI y CD
 
 Este paso es bastante sencillo y se realiza mediante **Github Actions**.
 
-Vamos primero a realizarlo de forma manual y luego con ayuda del Marketplace de Github para los Actions:
-
-### Manual
+### Creando el pipeline de despliegue
 
 1. Creamos un fichero en .github/workflows/SetUpEnv.yml
 ```bash
@@ -41,6 +39,45 @@ Vamos primero a realizarlo de forma manual y luego con ayuda del Marketplace de 
  |[2](./img/2.png)
 
  4. Vamos a complicar nuestro ejemplo.
-    1. 
+    1. Como con el anterior action hemos podido ver que la maquina esta vacía, es indispensable traerse el repositorio. Podemos complicarlo y hacerlo a mano o ir por la via rápida y traernos el [action/checkout@v3](https://github.com/marketplace/actions/checkout). Para esto último, basta con añadir a **"steps"**:
+    ```yml
+        - name: Setup | Checkout
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+    ```
+    Con **fetch-depth** así indicamos que solo se traiga el último commit
+    2. Ahora, lo que hace falta es preparar el entorno de nuestra maquina remota, esto es, instalar los binarios para la compilación en Rust. Nuevamente, para facilitarnos la vida, usaremos [ATiltedTree/setup-rust@v1](https://github.com/marketplace/actions/setup-rust):
+    ```yaml
+        - name: Setup | Rust
+          uses: ATiltedTree/setup-rust@v1
+          with:
+            rust-version: stable
+    ```
+    3. Y ahora vamos a ejecutar el proceso de compilado y de ejecución de pruebas unitarias:
+    ```yml
+        - name: Build | Compile
+        run: cargo build --verbose
+        - name: Build | Tests
+        run: cargo test --verbose
+    ```
+    Juntamos todas las piezas y la añadimos al final de "jobs":
+    ```yml
+    deploy_env:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Setup | Checkout
+            uses: actions/checkout@v3
+            with:
+            fetch-depth: 0
+        - name: Setup | Rust
+            uses: ATiltedTree/setup-rust@v1
+            with:
+            rust-version: stable
+        - name: Build | Compile
+            run: cargo build --verbose
+        - name: Build | Tests
+            run: cargo test --verbose
+    ```
 
 Para este ejemplo, vamos a desplegar un pipeline sencillo que se encargue de compilar y ejecutar las pruebas de nuestro proyecto Rust
