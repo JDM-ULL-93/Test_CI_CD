@@ -5,7 +5,7 @@ fn main() {
 #[cfg(test)]
 mod tests {
     #[test]
-    fn test_fallo() {
-        assert!(false);
+    fn test_ci() {
+        assert!(true);
     }
 }

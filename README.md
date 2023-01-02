@@ -1,4 +1,4 @@
-# Test_CI_CD
+# Test_CI_CD [![Hello World](https://github.com/JDM-ULL-93/Test_CI_CD/actions/workflows/SetUpEnv.yml/badge.svg)](https://github.com/JDM-ULL-93/Test_CI_CD/actions/workflows/SetUpEnv.yml)
 
 En este tutorial se listaran los pasos para desplegar un entorno con CI y CD
 
@@ -36,7 +36,7 @@ Este paso es bastante sencillo y se realiza mediante **Github Actions**.
 
  Indicando que se esta ejecutando . Si todo se ha realizado correctamente, tendremos el siguiente "check verde" final:
 
- |[2](./img/2.png)
+ ![2](./img/2.png)
 
  4. Vamos a complicar nuestro ejemplo.
     1. Como con el anterior action hemos podido ver que la maquina esta vacía, es indispensable traerse el repositorio. Podemos complicarlo y hacerlo a mano o ir por la via rápida y traernos el [action/checkout@v3](https://github.com/marketplace/actions/checkout). Para esto último, basta con añadir a **"steps"**:
@@ -80,3 +80,12 @@ Este paso es bastante sencillo y se realiza mediante **Github Actions**.
             run: cargo test --verbose
     ```
 
+### Desplegar 'Badge'
+
+#### Github Action
+
+El proceso para visualizar el Badge es bastante sencillo, basta con ir a **Actions** --> **Seleccionar action en la barra lateral izquierda** --> **Boton '...'** --> **Create status badge** --> **Copiar contenido**:
+
+![3](/img/3.png)
+
+Y pegar todo ello en nuestro README.md
