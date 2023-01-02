@@ -80,4 +80,3 @@ Este paso es bastante sencillo y se realiza mediante **Github Actions**.
             run: cargo test --verbose
     ```
 
-Para este ejemplo, vamos a desplegar un pipeline sencillo que se encargue de compilar y ejecutar las pruebas de nuestro proyecto Rust

@@ -1,5 +1,5 @@
 [package]
-name = "Test_CI_CD"
+name = "test_ci_cd"
 version = "0.1.0"
 edition = "2021"
 
