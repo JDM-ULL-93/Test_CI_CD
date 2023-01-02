@@ -27,11 +27,20 @@ Vamos primero a realizarlo de forma manual y luego con ayuda del Marketplace de 
         hello_world:
             runs-on: ubuntu-latest
             steps:
-                - name: Echo del mensaje
+                - name: Echo del mensaje.
                   run: echo "Hola Mundo!!!"
+                -name: Muestra el contenido de la maquina.
+                  run: ls -la
 ```
-3. Lo subimos al repositorio y tendremos que ver lo siguiente:
+3. Lo subimos al repositorio y tendremos que ver el siguiente punto::
 
+ ![1](./img/1.png) 
 
+ Indicando que se esta ejecutando . Si todo se ha realizado correctamente, tendremos el siguiente "check verde" final:
+
+ |[2](./img/2.png)
+
+ 4. Vamos a complicar nuestro ejemplo.
+    1. 
 
 Para este ejemplo, vamos a desplegar un pipeline sencillo que se encargue de compilar y ejecutar las pruebas de nuestro proyecto Rust

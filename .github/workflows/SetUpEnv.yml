@@ -10,3 +10,5 @@ jobs:
     steps:
       - name: Echo del mensaje
         run: echo "Hola Mundo!!!"
+      - name: Muestra el contenido de la maquina.
+        run: ls -la
